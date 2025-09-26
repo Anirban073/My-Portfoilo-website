@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Anirban Chakraborty — Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{--bg:#0f1724;--card:#0b1220;--muted:#9aa4b2;--accent:#6ee7b7;--glass: rgba(255,255,255,0.04)}
+    *{box-sizing:border-box}
+    html,body,#root{height:100%;}
+    body{font-family:Inter,system-ui,Segoe UI,Roboto,Arial; margin:0; background:linear-gradient(180deg,#061126 0%, #071028 60%); color: #e6eef6; -webkit-font-smoothing:antialiased}
+    .container{max-width:1000px; margin:40px auto; padding:28px}
+    .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); border-radius:14px; padding:22px; box-shadow: 0 6px 30px rgba(2,8,23,0.6); border:1px solid rgba(255,255,255,0.04)}
+    header{display:flex; gap:18px; align-items:center; justify-content:space-between}
+    .brand{display:flex; gap:14px; align-items:center}
+    .logo-img{width:70px; height:70px; border-radius:50%; object-fit:cover; border:2px solid var(--accent)}
+    h1{margin:0;font-size:24px}
+    h2{margin:0;font-size:20px}
+    p{color:var(--muted); margin:6px 0}
+    .hero{display:grid; grid-template-columns:1fr 320px; gap:22px; align-items:start; margin-top:18px}
+    .btn{padding:10px 14px; border-radius:10px; border:none; cursor:pointer; font-weight:600}
+    .btn-primary{background:linear-gradient(90deg,#06b6d4,#3b82f6); color:#021124}
+    .btn-ghost{background:transparent; border:1px solid rgba(255,255,255,0.06); color:var(--accent)}
+    .side-card{background:var(--card); padding:18px; border-radius:12px}
+    .meta{display:flex; gap:10px; flex-direction:column}
+    .section{margin-top:20px}
+    .projects{display:flex; flex-direction:column; gap:12px}
+    .project{background:var(--glass); padding:12px; border-radius:10px; border:1px solid rgba(255,255,255,0.02)}
+    .tags{display:flex; gap:8px; flex-wrap:wrap}
+    .tag{font-size:12px; padding:6px 8px; border-radius:999px; background:rgba(255,255,255,0.03); color:var(--muted)}
+    footer{margin-top:22px; text-align:center; color:var(--muted); font-size:13px}
+    a.inline{color:var(--accent); text-decoration:none}
+    @media (max-width:880px){ .hero{grid-template-columns:1fr} .side-card{order:-1} }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+
+  <!-- React + Babel (for single-file demo) -->
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  <script crossorigin src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+  <script type="text/babel">
+    const {useState} = React;
+
+    const DATA = {
+      name: 'Anirban Chakraborty',
+      title: '2nd-year IT student • Backend Developer • Data Science Enthusiast',
+      location: 'Kolkata, India',
+      email: '2004anirbanchakraborty@gmail.com',
+      phone: '9339084318',
+      github: 'https://github.com/Anirban073',
+      linkedin: 'https://www.linkedin.com/in/anirban-chakraborty-922263308/',
+      leetcode: 'https://leetcode.com/u/Anirban_73/',
+      codolio: 'https://codolio.com/profile/anirban73',
+      gfg: 'https://www.geeksforgeeks.org/user/2004anirbancox47/',
+      resume: 'Latest Resume.pdf',
+      about: `Aspiring Data Science and AI/ML, Backend Developer with a strong foundation in C++ and Python. Currently enhancing my skills in Data Science, backend development and mastering Data Structures and Algorithms. Passionate about problem solving, creating impactful solutions, and eager to learn new technologies to stay ahead in this rapidly evolving field.`,
+      achievements: [
+        '1st Place — CODATHON (AlgoHunt) IC-NSBT 2025',
+        '1st Place — ISTE IDEATHON (WOVIOUR)'
+      ],
+      projects: [
+        {title: 'To-Do List (FastAPI + SQLite)', desc: 'CRUD API + simple frontend.', stack: ['FastAPI','SQLite','SQLAlchemy','JavaScript'], link: 'https://github.com/Anirban073/fastapi-crud-project'},
+        {title: 'Guess The Word Game', desc: 'Interactive JS game with dynamic UI and win/lose conditions.', stack: ['JavaScript','HTML','CSS'], link: 'https://github.com/anikchand461/Guess-The-Word'},
+        {title: 'EcoMate (Django)', desc: 'Sustainable e-commerce prototype; contributed backend APIs & product filters.', stack: ['Django','Python','SQLite'], link: 'https://github.com/abhirajadhikary06/EcoMate'},
+        {title: 'WOVIOUR — Research Paper', desc: 'Women safety using AI-powered wearables. Published at ISTE HIT & Unstop.', stack: ['AI','IoT','Research'], link: '' }
+      ],
+      skills: ['HTML', 'CSS', 'JavaScript', 'Git', 'GitHub', 'Python', 'C++', 'SQLite', 'SQL', 'NumPy', 'Pandas', 'Matplotlib']
+    };
+
+    function Nav(){
+      return (
+        <header>
+          <div className="brand">
+            <img src="image.jpg" alt="profile" className="logo-img" />
+            <div>
+              <h1>{DATA.name}</h1>
+              <p style={{marginTop:6}}>{DATA.title} • {DATA.location}</p>
+            </div>
+          </div>
+          <div style={{display:'flex',gap:10,alignItems:'center'}}>
+            <a className="btn btn-ghost" href={DATA.github} target="_blank">GitHub</a>
+            <a className="btn btn-ghost" href={DATA.linkedin} target="_blank">LinkedIn</a>
+            <a className="btn btn-primary" href={DATA.resume} download>Download Resume</a>
+          </div>
+        </header>
+      )
+    }
+
+    function Hero(){
+      return (
+        <div className="hero">
+          <div>
+            <div className="card">
+              <h2>Hello — I am {DATA.name}</h2>
+              <p>{DATA.about}</p>
+              <div style={{marginTop:16}}>
+                <h3 style={{margin:'6px 0'}}>Achievements</h3>
+                <ul style={{color:'var(--muted)'}}>
+                  {DATA.achievements.map(a=> <li key={a}>{a}</li>)}
+                </ul>
+              </div>
+            </div>
+
+            <div className="section">
+              <div className="card">
+                <h3 style={{marginTop:0}}>Projects</h3>
+                <div className="projects">
+                  {DATA.projects.map(p=> (
+                    <div className="project" key={p.title}>
+                      <div style={{display:'flex',justifyContent:'space-between'}}>
+                        <strong>{p.title}</strong>
+                        {p.link && <a className="inline" href={p.link} target="_blank">Code</a>}
+                      </div>
+                      <p style={{marginTop:8,color:'var(--muted)'}}>{p.desc}</p>
+                      <div style={{marginTop:8}} className="tags">
+                        {p.stack.map(s=> <span className="tag" key={s}>{s}</span>)}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            <div className="section">
+              <div className="card">
+                <h3 style={{marginTop:0}}>Skills</h3>
+                <div style={{marginTop:10}} className="tags">
+                  {DATA.skills.map(s=> <span className="tag" key={s}>{s}</span>)}
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <aside className="side-card card">
+            <div className="meta">
+              <div>
+                <strong>Contact</strong>
+                <p style={{margin:6}}><a className="inline" href={`mailto:${DATA.email}`}>{DATA.email}</a></p>
+                <p style={{margin:6}}><a className="inline" href={`tel:${DATA.phone}`}>{DATA.phone}</a></p>
+              </div>
+
+              <div style={{marginTop:12}}>
+                <strong>Education</strong>
+                <p style={{margin:6,color:'var(--muted)'}}>Haldia Institute Of Technology — B.Tech (IT), 2024–2028<br/>2nd Year</p>
+              </div>
+
+              <div style={{marginTop:12}}>
+                <strong>Languages</strong>
+                <p style={{margin:6,color:'var(--muted)'}}>Bengali • Hindi • English</p>
+              </div>
+
+              <div style={{marginTop:12}}>
+                <strong>Profiles</strong>
+                <p style={{margin:6}}>
+                  <a className="inline" href={DATA.github} target="_blank">GitHub</a> · 
+                  <a className="inline" href={DATA.linkedin} target="_blank">LinkedIn</a> · 
+                  <a className="inline" href={DATA.leetcode} target="_blank">LeetCode</a> · 
+                  <a className="inline" href={DATA.codolio} target="_blank">Codolio</a> · 
+                  <a className="inline" href={DATA.gfg} target="_blank">GFG</a>
+                </p>
+              </div>
+
+            </div>
+          </aside>
+
+        </div>
+      )
+    }
+
+    function Contact(){
+      const [msg,setMsg] = useState('');
+      return (
+        <div className="section card">
+          <h3>Contact Me</h3>
+          <p style={{color:'var(--muted)'}}>Send a quick message — this form opens your email client.</p>
+          <div style={{marginTop:12, display:'flex', gap:8}}>
+            <input value={msg} onChange={e=>setMsg(e.target.value)} placeholder="Type a short message" style={{flex:1,padding:10,borderRadius:8,border:'1px solid rgba(255,255,255,0.04)',background:'transparent',color:'#e6eef6'}} />
+            <a className="btn btn-primary" href={`mailto:${DATA.email}?subject=Portfolio%20Contact&body=${encodeURIComponent(msg)}`}>Send</a>
+          </div>
+        </div>
+      )
+    }
+
+    function App(){
+      return (
+        <div className="container">
+          <Nav />
+          <main style={{marginTop:18}}>
+            <Hero />
+            <Contact />
+          </main>
+          <footer className="card footer" style={{marginTop:20}}>
+            <div style={{padding:12, borderRadius:8}}>
+              <small>Made with ❤️ • Built using a single-file React demo — copy this file, replace links, and host anywhere (GitHub Pages, Netlify, Vercel).</small>
+            </div>
+          </footer>
+        </div>
+      )
+    }
+
+    ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+  </script>
+</body>
+</html>
